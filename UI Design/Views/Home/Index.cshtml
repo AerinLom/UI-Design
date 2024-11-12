@@ -3,38 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar with Carousel</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <title>ShopSmart</title>
+
+    <!-- Importing Montserrat font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+    
 </head>
+
 <body>
+
     <div id="sidebar" class="sidebar">
-        <a href="#" class="closebtn" onclick="toggleSidebar()">×</a>
+        <a href="#" class="closebtn" onclick="toggleSidebar()">x</a>
         <a href="#">Home</a>
-        <a href="#">Services</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
         <a href="#">Products</a>
-   
+
     </div>
 
-    <button onclick="toggleSidebar()" class="openbtn">☰ Open Sidebar</button>
+    <header>
+        <button class="openbtn" onclick="toggleSidebar()">☰</button>
+    </header>
 
-    <!-- Carousel Section -->
-    <div class="container">
-        <div class="slider-wrapper">
-            <div class="slider">
-                <img id="img-1" src="/images/checkers.png" alt="Image 1">
-                <img id="img-2" src="/images/pnp.png" alt="Image 2">
-                <img id="img-3" src="/images/ww.png" alt="Image 3">
-            </div>
-            <div class="slider-nav">
-                <a href="#img-1"></a>
-                <a href="#img-2"></a>
-                <a href="#img-3"></a>
-            </div>
+    <main>
+        <div class="heading">
+            <h2>Create Your List</h2>
         </div>
-    </div>
+
+        <div class="form-container">
+            <div class="list-section">
+                <input type="text" id="grocery1" placeholder="Enter grocery:">
+
+            </div>
+
+            <div class="list-section">
+                <input type="text" id="grocery2" placeholder="Enter grocery:">
+
+            </div>
+
+            <div class="list-section">
+                <input type="text" id="grocery3" placeholder="Enter grocery:">
+
+            </div>
+
+            <div class="list-section">
+                <input type="text" id="grocery4" placeholder="Enter grocery:">
+
+            </div>
+
+            <div class="list-section">
+                <input type="text" id="grocery5" placeholder="Enter grocery:">
+
+            </div>
+
+            <div class="list-section">
+                <input type="text" id="grocery6" placeholder="Enter grocery:">
+
+            </div>
+
+            <div class="list-section">
+                <input type="text" id="grocery7" placeholder="Enter grocery:">
+
+            </div>
+
+            <!-- Action buttons -->
+            <button onclick="clearFields()">Reset All Fields</button>
+            <button onclick="generateList()">Generate Your List</button>
+
+            <div class="completion-message" id="completionMessage">Your list has been generated successfully!</div>
+        </div>
+    </main>
 
     <script src="/js/script.js"></script>
+
 </body>
 </html>
+
