@@ -1,0 +1,140 @@
+﻿/* background image */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    color: #333;
+}
+
+/* Header styling */
+header {
+    padding: 30px 20px;
+    background-color: #111;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+/* Sidebar styling */
+.sidebar {
+    height: 100%;
+    width: 0; /* Sidebar is initially closed */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+    .sidebar a {
+        padding: 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+    .sidebar .closebtn {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        font-size: 36px;
+        color: white;
+        cursor: pointer;
+    }
+
+/* Toggle button styling */
+.toggle-sidebar {
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    background: none;
+    border: none;
+    padding: 8px;
+    position: absolute;
+    left: 20px;
+}
+
+    .toggle-sidebar:hover {
+        color: #888;
+    }
+
+
+/* Main dashboard content */
+.main-content {
+    margin-left: 0; /* Adjust the margin so content doesn't overlap sidebar when closed */
+    padding: 20px;
+}
+
+
+.dashboard-header {
+    font-size: 2rem;
+    color: #fff; /* White text color */
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 3px 3px 5px rgb(0, 0, 0), 0 0 25px rgb(0, 0, 0), 0 0 5px rgb(0, 0, 0); /* Black shadow */
+}
+
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 650px; /* Move cards further down significantly */
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.8); /* Slight transparency */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card h3 {
+        font-size: 1.2rem;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        color: #777;
+        font-size: 1rem;
+    }
+
+    .card button {
+        padding: 8px 20px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .card button:hover {
+            background-color: #444;
+        }
