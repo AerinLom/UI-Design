@@ -24,15 +24,27 @@
     </div>
 
 
-    <header>
-
-        <button class="toggle-sidebar" onclick="openSidebar()">☰</button>
-
-    </header>
 
 
     <div class="main-content">
+        <button class="toggle-sidebar" onclick="openSidebar()">☰</button>
+        <input type="text" class="search-bar" placeholder="Search for products...">
         <div class="dashboard-header">Welcome to ShopSmart</div>
+
+        <div class="button-container">
+            <button class="image-button">
+                <img src="~/images/checkers.png" alt="Button 1">
+            </button>
+            <button class="image-button">
+                <img src="~/images/pnp.png" alt="Button 2">
+            </button>
+            <button class="image-button">
+                <img src="~/images/spar.jpg" alt="Button 3">
+            </button>
+            <button class="image-button">
+                <img src="~/images/ww.png" alt="Button 4">
+            </button>
+        </div>
 
 
         <div class="card-container">
@@ -54,7 +66,7 @@
         </div>
     </div>
 
-    <script src="js/dashboardscripts.js"> </script>
+    <script src="~/js/dashboardscripts.js"> </script>
 
 
 </body>

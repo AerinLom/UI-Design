@@ -97,7 +97,7 @@ header {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    margin-top: 650px; /* Move cards further down significantly */
+    margin-top: 300px; /* Move cards further down significantly */
 }
 
 .card {
@@ -138,3 +138,48 @@ header {
         .card button:hover {
             background-color: #444;
         }
+
+.search-bar {
+    width: 60%;
+    padding: 10px;
+    border-radius: 17px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 16px;
+    margin-left: 260px;
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows images to wrap to the next row */
+    justify-content: center; /* Center-aligns images */
+    gap: 20px; /* Adds space between buttons */
+    padding: 20px; /* Optional padding around the container */
+}
+
+.image-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0; /* Removes extra padding around the button */
+    width: 120px; /* Set a fixed width for all buttons */
+    height: 120px; /* Set a fixed height for all buttons */
+    display: flex; /* Centers the image within the button */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensures images do not overflow the button */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Optional: Add shadow for a button-like effect */
+    transition: transform 0.2s ease; /* Smooth hover effect */
+}
+
+    .image-button img {
+        width: 100%; /* Make the image fill the button */
+        height: 100%; /* Make the image fill the button */
+        object-fit: cover; /* Ensures the image covers the button area without distortion */
+        border-radius: 8px; /* Ensures the image matches the button's rounded corners */
+    }
+
+    .image-button:hover {
+        transform: scale(1.05); /* Slightly enlarge button on hover */
+    }
