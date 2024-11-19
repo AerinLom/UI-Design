@@ -1,6 +1,10 @@
-﻿namespace ShopSmartAPI.Models
+﻿using UI_Design.Models;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace UI_Design.Models
 {
-    public class Product
+    public class ProductModel
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
