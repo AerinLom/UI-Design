@@ -1,0 +1,69 @@
+﻿@model List<ProductModel>
+
+@{
+    ViewData["Title"] = "Checkers Products";
+    var username = TempData["Username"] as string;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woolworths Products</title>
+
+    <!-- Import Montserrat font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+    <link href="~/css/dashboardstyle.css" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <span class="closebtn" onclick="closeSidebar()">×</span>
+        <a asp-controller="Home" asp-action="Dashboard">Dashboard</a>
+        <a asp-controller="Product" asp-action="MyCart">My Cart</a>
+        <a asp-controller="Product" asp-action="SavedLists">Saved Lists</a>
+        <a asp-controller="Product" asp-action="PopularProducts">Popular Products</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <button class="toggle-sidebar" onclick="openSidebar()">☰</button>
+        <form asp-controller="Product" asp-action="SearchProducts" method="get" class="search-form">
+            <input id="searchInput" type="text" name="Name" placeholder="Search..." required class="search-bar">
+        </form>
+
+        <div class="dashboard-header">
+            <h1>Checkers Products</h1>
+        </div>
+
+
+        <!-- Product List -->
+        <div class="card-container">
+            @if (Model != null && Model.Count > 0)
+            {
+                @foreach (var product in Model)
+                {
+                    <div class="card product-card">
+                        <h3>@product.ProductName</h3>
+                        <img src="@Url.Content($"{product.ImagePath}")" alt="@product.ProductName" class="product-image" />
+                        <p>Price: R @product.Price</p>
+                        <form asp-controller="Product" asp-action="AddProductToCart" method="post">
+                            <input type="hidden" name="Id" value="@product.ProductId" />
+                            <button type="submit" class="custom-search-button">Add to Cart</button>
+                        </form>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No products available.</p>
+            }
+        </div>
+    </div>
+
+    <script src="~/js/dashboardscripts.js"></script>
+</body>
+</html>

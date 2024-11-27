@@ -183,3 +183,21 @@ header {
     .image-button:hover {
         transform: scale(1.05); /* Slightly enlarge button on hover */
     }
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    text-align: center;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none; /* Remove underline if it's an <a> tag */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Optional: adds shadow */
+}
+
+    .btn:hover {
+        background-color: #444; /* Slightly lighter black on hover */
+    }

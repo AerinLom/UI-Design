@@ -23,6 +23,11 @@ namespace UI_Design.Controllers
             return View();
         }
 
+        public IActionResult GroceryList()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

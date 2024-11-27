@@ -28,21 +28,30 @@
 
     <div class="main-content">
         <button class="toggle-sidebar" onclick="openSidebar()">☰</button>
-        <input type="text" class="search-bar" placeholder="Search for products...">
+        <form asp-controller="Product" asp-action="SearchProducts" method="get" class="search-form">
+            <input id="searchInput" type="text" name="Name" placeholder="Search Products..." required class="search-bar">
+        </form>
         <div class="dashboard-header">Welcome to ShopSmart</div>
 
         <div class="button-container">
-            <button class="image-button">
-                <img src="~/images/checkers.png" alt="Button 1">
+            <!-- Button for Checkers -->
+            <button class="image-button" onclick="window.location.href='@Url.Action("CheckersView", "Product")'">
+                <img src="~/images/checkers.png" alt="Checkers">
             </button>
-            <button class="image-button">
-                <img src="~/images/pnp.png" alt="Button 2">
+
+            <!-- Button for Pick n Pay -->
+            <button class="image-button" onclick="window.location.href='@Url.Action("PicknPayView", "Product")'">
+                <img src="~/images/pnp.png" alt="Pick n Pay">
             </button>
-            <button class="image-button">
-                <img src="~/images/spar.jpg" alt="Button 3">
+
+            <!-- Button for Spar -->
+            <button class="image-button" onclick="window.location.href='@Url.Action("SparView", "Product")'">
+                <img src="~/images/spar.jpg" alt="Spar">
             </button>
-            <button class="image-button">
-                <img src="~/images/ww.png" alt="Button 4">
+
+            <!-- Button for Woolworths -->
+            <button class="image-button" onclick="window.location.href='@Url.Action("WoolworthsView", "Product")'">
+                <img src="~/images/ww.png" alt="Woolworths">
             </button>
         </div>
 
@@ -51,7 +60,7 @@
             <div class="card">
                 <h3>Recent List</h3>
                 <p>No recent lists available.</p>
-                <button onclick="createNewList()">Create New List</button>
+                <a href="@Url.Action("GroceryList", "Home")" class="btn">Create New List</a>
             </div>
             <div class="card">
                 <h3>Saved Lists</h3>

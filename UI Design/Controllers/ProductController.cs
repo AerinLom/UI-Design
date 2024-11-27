@@ -71,12 +71,12 @@ public class ProductController : Controller
         // Pass the products to the view
         return View(products);
     }
-    public async Task<IActionResult> CakeView()
+    public async Task<IActionResult> WoolworthsView()
     {
         List<ProductModel> products = new List<ProductModel>();
         try
         {
-            var response = await _httpClient.GetAsync("https://localhost:7076/api/Products/type/Cake");
+            var response = await _httpClient.GetAsync("https://localhost:7174/api/Products/products/Woolworths");
             response.EnsureSuccessStatusCode();
 
             var responseData = await response.Content.ReadAsStringAsync();
@@ -101,12 +101,12 @@ public class ProductController : Controller
         }
     }
 
-    public async Task<IActionResult> CupcakeView()
+    public async Task<IActionResult> CheckersView()
     {
         List<ProductModel> products = new List<ProductModel>();
         try
         {
-            var response = await _httpClient.GetAsync("https://localhost:7194/api/Products/type/Cupcake");
+            var response = await _httpClient.GetAsync("https://localhost:7174/api/Products/products/Checkers");
             response.EnsureSuccessStatusCode();
 
             var responseData = await response.Content.ReadAsStringAsync();
@@ -130,12 +130,42 @@ public class ProductController : Controller
             return View("Error");
         }
     }
-    public async Task<IActionResult> CookieView()
+    public async Task<IActionResult> PicknPayView()
     {
         List<ProductModel> products = new List<ProductModel>();
         try
         {
-            var response = await _httpClient.GetAsync("https://localhost:7194/api/Products/type/Cookie");
+            var response = await _httpClient.GetAsync("https://localhost:7174/api/Products/products/Pick%20n%20pay");
+            response.EnsureSuccessStatusCode();
+
+            var responseData = await response.Content.ReadAsStringAsync();
+            products = JsonConvert.DeserializeObject<List<ProductModel>>(responseData);
+
+            return View(products);
+        }
+        catch (HttpRequestException)
+        {
+            // Handle HTTP request errors
+            return View("Error");
+        }
+        catch (JsonException)
+        {
+            // Handle JSON parsing errors
+            return View("Error");
+        }
+        catch (Exception)
+        {
+            // Handle other unexpected errors
+            return View("Error");
+        }
+    }
+
+    public async Task<IActionResult> SparView()
+    {
+        List<ProductModel> products = new List<ProductModel>();
+        try
+        {
+            var response = await _httpClient.GetAsync("https://localhost:7174/api/Products/products/Spar");
             response.EnsureSuccessStatusCode();
 
             var responseData = await response.Content.ReadAsStringAsync();
@@ -184,7 +214,7 @@ public class ProductController : Controller
             var jsonContent = new StringContent(JsonConvert.SerializeObject(userCart), Encoding.UTF8, "application/json");
 
             // Send POST request to the API endpoint for adding a product to the cart
-            var apiURL = "https://localhost:7076/api/UserCart";
+            var apiURL = "https://localhost:7174/api/UserCart";
             var response = await _httpClient.PostAsync(apiURL, jsonContent);
 
             // Check if request was successful
@@ -221,7 +251,7 @@ public class ProductController : Controller
             var userId = HttpContext.Session.GetString("UserId");
 
             // Make a GET request to the API to fetch the user's cart items
-            var response = await _httpClient.GetAsync($"https://localhost:7194/api/UserCart/MyCart?userId={userId}");
+            var response = await _httpClient.GetAsync($"https://localhost:7174/api/UserCart/MyCart?userId={userId}");
 
             // Check if the response was successful
             if (response.IsSuccessStatusCode)
@@ -281,7 +311,7 @@ public class ProductController : Controller
         try
         {
             // Send GET request to the API endpoint with the productName parameter
-            var response = await _httpClient.GetAsync($"https://localhost:7194/api/Products/search/{Uri.EscapeDataString(Name)}");
+            var response = await _httpClient.GetAsync($"https://localhost:7174/api/Products/product/{Uri.EscapeDataString(Name)}");
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();
