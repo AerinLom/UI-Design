@@ -346,5 +346,50 @@ public class ProductController : Controller
             return RedirectToAction("NoProductsFound");
         }
     }
-  
+
+    [HttpPost]
+    public async Task<IActionResult> GenerateList([FromForm] string[] groceries)
+    {
+        if (groceries == null || groceries.Length == 0)
+        {
+            return BadRequest("No groceries were provided.");
+        }
+
+        try
+        {
+            // Filter out null or empty values
+            var filteredGroceries = groceries.Where(g => !string.IsNullOrWhiteSpace(g)).ToArray();
+
+            // Prepare the request payload
+            var jsonPayload = JsonConvert.SerializeObject(filteredGroceries);
+
+            // Create the HTTP content
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+            // Send a single POST request to the endpoint
+            var response = await _httpClient.PostAsync("https://localhost:7174/api/Products/cheapest", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // Parse the response content
+                var responseData = await response.Content.ReadAsStringAsync();
+                var cheapestProducts = JsonConvert.DeserializeObject<List<ProductModel>>(responseData);
+
+                return Ok(cheapestProducts);
+            }
+
+            // Handle non-success responses and log the error
+            var errorContent = await response.Content.ReadAsStringAsync();
+            Console.Error.WriteLine($"API Error: {response.StatusCode} - {errorContent}");
+            return StatusCode((int)response.StatusCode, errorContent);
+        }
+        catch (Exception ex)
+        {
+            // Log the error and return an appropriate error response
+            Console.Error.WriteLine($"Error occurred while fetching cheapest products: {ex.Message}");
+            return StatusCode(500, "An error occurred while processing your request.");
+        }
+    }
+
+
 }

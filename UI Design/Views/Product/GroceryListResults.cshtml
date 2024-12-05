@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>ShopSmart - Results</title>
+</head>
+
+<body>
+    <main>
+        <div class="heading">
+            <h2>Generated List</h2>
+        </div>
+
+        <!-- Section to display the results -->
+        @if (ViewData["CheapestProducts"] != null)
+        {
+            <div class="results-section">
+                <ul>
+                    @foreach (var product in (List<object>)ViewData["CheapestProducts"])
+                    {
+                        <li>
+                            @if (product is Newtonsoft.Json.Linq.JObject jObject)
+                            {
+                                @Html.Raw(jObject["ProductName"]?.ToString() + " - " + jObject["Message"]?.ToString())
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+        else
+        {
+            <p>No products found. Please try again with different inputs.</p>
+        }
+    </main>
+</body>
+</html>

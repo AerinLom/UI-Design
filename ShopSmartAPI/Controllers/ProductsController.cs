@@ -87,5 +87,44 @@ namespace ShopSmartAPI.Controllers
 
             return Ok(products);
         }
+
+        // POST: api/products/cheapest
+        [HttpPost("cheapest")]
+        public async Task<ActionResult<List<Product>>> GetCheapestProducts([FromBody] List<string> names)
+        {
+            if (names == null || !names.Any())
+            {
+                return BadRequest("Product names cannot be empty.");
+            }
+
+            var cheapestProducts = new List<Product>();
+
+            foreach (var name in names)
+            {
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    continue;
+                }
+
+                // Find the cheapest product matching the name
+                var product = await _context.Products
+                    .Where(p => p.ProductName.ToLower().Contains(name.ToLower()))
+                    .OrderBy(p => p.Price)
+                    .FirstOrDefaultAsync();
+
+                if (product != null)
+                {
+                    cheapestProducts.Add(product);
+                }
+            }
+
+            if (!cheapestProducts.Any())
+            {
+                return NotFound("No products found for the given names.");
+            }
+
+            return Ok(cheapestProducts);
+        }
+
     }
 }
