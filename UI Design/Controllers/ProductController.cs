@@ -375,7 +375,7 @@ public class ProductController : Controller
                 var responseData = await response.Content.ReadAsStringAsync();
                 var cheapestProducts = JsonConvert.DeserializeObject<List<ProductModel>>(responseData);
 
-                return Ok(cheapestProducts);
+                return View("CheapestProducts", cheapestProducts);
             }
 
             // Handle non-success responses and log the error
